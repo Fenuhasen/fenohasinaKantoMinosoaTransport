@@ -14,24 +14,50 @@ public class Admin {
     private int id;
     private String nom;
     private String prenom;
+    private Agence agence;
+
+    public void creerVoyage(Centre centreDepart, Centre centreArrivee, int distance, LocalDate dateDepart, Classe classe, int prixBillet, TaxiBrousse taxiBrousse, Chauffeur chauffeur){
+        var voyage = new Voyage(agence.getVoyages().size() + 1 , centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), StatutVoyage.AVENIR);
+        agence.getVoyages().add(voyage);
+    }
     
-    public void creerVoyage(int id, Centre centreDepart, Centre centreArrivee, int distance, LocalDate dateDepart, Classe classe, int prixBillet, TaxiBrousse taxiBrousse, Chauffeur chauffeur){
-        var voyage = new Voyage(id, centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), StatutVoyage.AVENIR);
+    public void retarderVoyage(int id, LocalDate dateDepart){
+        for (Voyage voyage : agence.getVoyages()) {
+            if(voyage.getId() == id){
+                voyage.setDateDepart(dateDepart);
+            }
+        }
     }
-
-    public void retarderVoyage(Voayge voyage){
-
-    }
-
-    public void annulerVoyage(Voyage voyage){
-
+    
+    public void annulerVoyage(int id){
+        for (Voyage voyage : agence.getVoyages()) {
+            if(voyage.getId() == id){
+                voyage.setStatut(Statut.ANNULE);
+            }
+        }
     }
 
     public int obtenirDepense(){
-        return 0;
+        int total = 0;
+        
+        for (Chauffeur chauffeur : agence.getChauffeurs()) {
+            total += chauffeur.obtenirTotalSalaire();
+        }
+
+        for (Voyage voyage : agence.getVoyages()){
+            total += voyage.getDistance() * getTaxiBrousse().getDepenseParKilometre();
+        }
+
+        return total;
     }
     
     public int obtenirRevenue(){
-        return 0;
+        int total = 0;
+        for (Reservation reservation : agence.getReservations()){
+            if(reservation.getStatut() == StatutReservation.PAYE){
+                total += reservation.obtenirTotal();
+            }
+        }
+        return total;
     }
 }

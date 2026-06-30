@@ -4,5 +4,5 @@ package com.fenohasinaKantoMinosoa.transport;
  * StatutReservation
  */
 public enum StatutReservation {
-    NONPAYE
+    NONPAYE, PAYE, ANNULE
 }

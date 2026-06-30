@@ -3,8 +3,12 @@ package com.fenohasinaKantoMinosoa.transport;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
+@Getter
+@Setter
 public class Reservation {
     private int id;
     private LocalDate date;
@@ -15,7 +19,7 @@ public class Reservation {
     private StatutReservation statut;
 
     public int obtenirTotal(){
-        var total = 0;
+        var total = voyage.getPrixBillet() * nombrePassager;
         return total;
     }
 
