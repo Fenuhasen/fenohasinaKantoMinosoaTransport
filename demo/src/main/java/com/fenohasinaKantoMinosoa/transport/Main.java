@@ -1,9 +1,21 @@
 package com.fenohasinaKantoMinosoa.transport;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+        try (Connection conn = ConnexionBD.getConnection()) {
+
+            System.out.println("Connexion réussie !");
+
+        } catch (Exception e) {
+
+            System.out.println("Erreur de connexion");
+            e.printStackTrace();
+
+        }
+
         var agence = new Agence();
         var admin = new Admin(0, "Test", "Admin", agence);
         var tana = new Centre(1, "Antananarivo");
@@ -18,5 +30,7 @@ public class Main {
         charlie.payerReservation(1);
         System.out.println(charlie.listerReservation().get(0).getStatut()); //Paye
         System.out.println(tanaFianara.nombrePlaceLibre()); //26
+
+         
     }
 }
