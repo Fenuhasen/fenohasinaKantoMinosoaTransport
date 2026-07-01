@@ -22,7 +22,8 @@ public class Client {
 
     public void reserver(Voyage voyage, int nombrePassager, String typePayement){
         var reservation = new Reservation(admin.getAgence().getReservations().size() + 1, LocalDate.now(), this, nombrePassager, voyage, typePayement, StatutReservation.NONPAYE);
-        admin.getAgence().getReservations().add(reservation);
+       admin.getAgence().getReservations().add(reservation);
+        voyage.getListeReservation().add(reservation);
     }
 
     public void payerReservation(int id){

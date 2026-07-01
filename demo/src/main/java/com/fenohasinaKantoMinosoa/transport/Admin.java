@@ -17,7 +17,7 @@ public class Admin {
     private Agence agence;
 
     public void creerVoyage(Centre centreDepart, Centre centreArrivee, int distance, LocalDate dateDepart, Classe classe, int prixBillet, TaxiBrousse taxiBrousse, Chauffeur chauffeur){
-        var voyage = new Voyage(agence.getVoyages().size() + 1 , centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), StatutVoyage.AVENIR);
+        var voyage = new Voyage(agence.getVoyages().size() + 1 , centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), Status.EN_PREPARATION);
         agence.getVoyages().add(voyage);
     }
     
@@ -32,7 +32,7 @@ public class Admin {
     public void annulerVoyage(int id){
         for (Voyage voyage : agence.getVoyages()) {
             if(voyage.getId() == id){
-                voyage.setStatut(Statut.ANNULE);
+                voyage.setStatus(Status.ANNULE);
             }
         }
     }
@@ -45,7 +45,7 @@ public class Admin {
         }
 
         for (Voyage voyage : agence.getVoyages()){
-            total += voyage.getDistance() * getTaxiBrousse().getDepenseParKilometre();
+            total += voyage.getDistance() * voyage.getTaxiBrousse().getDepenseParKilometre();
         }
 
         return total;

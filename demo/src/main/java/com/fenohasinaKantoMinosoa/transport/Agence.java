@@ -1,5 +1,6 @@
 package com.fenohasinaKantoMinosoa.transport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -19,5 +20,13 @@ public class Agence {
     private List<Chauffeur> chauffeurs;
     private List<Centre> centres;
 
-    
+    Agence(){
+        this.id = 0;
+        this.clients = new ArrayList<>();
+        this.reservations = new ArrayList<>();
+        this.voyages = new ArrayList<>();
+        this.taxiBrousses = new ArrayList<>();
+        this.chauffeurs = new ArrayList<>();
+        this.centres = new ArrayList<>();
+    }
 }
