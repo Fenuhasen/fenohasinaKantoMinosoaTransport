@@ -90,8 +90,8 @@ public class App {
                 System.out.println("--------------------------------");
 
                 System.out.println("ID : " + rs.getInt("id"));
-                System.out.println("Centre départ : " + rs.getString("centre_depart"));
-                System.out.println("Centre arrivée : " + rs.getString("centre_arrivee"));
+                System.out.println("Centre départ : " + rs.getInt("centre_depart_id"));
+                System.out.println("Centre arrivée : " + rs.getInt("centre_arrivee_id"));
                 System.out.println("Distance : " + rs.getInt("distance"));
                 System.out.println("Date départ : " + rs.getDate("date_depart"));
                 System.out.println("Classe : " + rs.getString("classe"));
