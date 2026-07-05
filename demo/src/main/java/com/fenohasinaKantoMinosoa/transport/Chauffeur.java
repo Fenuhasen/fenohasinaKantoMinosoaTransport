@@ -17,15 +17,21 @@ public class Chauffeur {
     private String nom;
     private String prenom;
     private int salaire;
+    private Admin admin;
+
     public int obtenirTotalSalaire() {
         return 0;
     }
 
-    public Chauffeur(int id, String nom, String prenom, int salaire) {
+    public Chauffeur(int id, String nom, String prenom, int salaire, Admin admin) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.salaire = salaire;
+        this.admin = admin;
+        
+        admin.getAgence().getChauffeurs().add(this);
+
 
         String sql = "INSERT INTO chauffeur(id, nom, prenom, salaire) VALUES (?, ?, ?, ?)";
 

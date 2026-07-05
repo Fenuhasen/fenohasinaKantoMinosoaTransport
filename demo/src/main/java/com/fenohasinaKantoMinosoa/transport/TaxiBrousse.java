@@ -16,15 +16,20 @@ public class TaxiBrousse {
     private int placesMax;
     private int depenseParKilometre;
     private int vitesseMoyenne;
+    private Admin admin;
     //methodes coming soon
 
 
-    public TaxiBrousse(int id, String matricule, int placesMax, int depenseParKilometre, int vitesseMoyenne) {
+    public TaxiBrousse(int id, String matricule, int placesMax, int depenseParKilometre, int vitesseMoyenne, Admin admin) {
         this.id = id;
         this.matricule = matricule;
         this.placesMax = placesMax;
         this.depenseParKilometre = depenseParKilometre;
         this.vitesseMoyenne = vitesseMoyenne;
+        this.admin = admin;
+
+        admin.getAgence().getTaxiBrousses().add(this);
+
 
         String sql = "INSERT INTO Taxibrousse(id, matricule, place_max, depense_kilometre, vitesse_moyenne) VALUES (?, ?, ?, ?, ?)";
 

@@ -17,7 +17,7 @@ public class Admin {
     private Agence agence;
 
     public void creerVoyage(Centre centreDepart, Centre centreArrivee, int distance, LocalDate dateDepart, Classe classe, int prixBillet, TaxiBrousse taxiBrousse, Chauffeur chauffeur){
-        var voyage = new Voyage(agence.getVoyages().size() + 1 , centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), Status.EN_PREPARATION);
+        var voyage = new Voyage(agence.getVoyages().size() + 1 , centreDepart, centreArrivee, distance, dateDepart, classe, prixBillet, taxiBrousse, chauffeur, new ArrayList<>(), Status.EN_PREPARATION, this);
         agence.getVoyages().add(voyage);
     }
     

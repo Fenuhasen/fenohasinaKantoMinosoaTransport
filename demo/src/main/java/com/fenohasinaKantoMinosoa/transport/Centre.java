@@ -15,11 +15,15 @@ import lombok.Setter;
 public class Centre {
     private int id;
     private String ville;
+    private Admin admin;
 
 
-    public Centre(int id, String ville) {
+    public Centre(int id, String ville, Admin admin) {
         this.id = id;
         this.ville = ville;
+        this.admin = admin;
+
+        admin.getAgence().getCentres().add(this);
 
         String sql = "INSERT INTO centre(id, ville) VALUES (?, ?)";
 

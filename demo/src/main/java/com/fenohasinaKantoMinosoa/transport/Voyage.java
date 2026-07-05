@@ -27,6 +27,7 @@ public class Voyage {
     private Chauffeur chauffeur;
     private List<Reservation> listeReservation;
     private Status status;
+    private Admin admin;
 
     public String confirmerArrivee() {
         this.status = Status.ARRIVEE;
@@ -51,7 +52,7 @@ public class Voyage {
 
     public Voyage(int id, Centre centreDepart, Centre centreArrivee, int distance, LocalDate dateDepart, Classe classe,
             int prixBillet,
-            TaxiBrousse taxiBrousse, Chauffeur chauffeur) {
+            TaxiBrousse taxiBrousse, Chauffeur chauffeur, Admin admin) {
         this.id = id;
         this.centreDepart = centreDepart;
         this.centreArrivee = centreArrivee;
@@ -63,6 +64,9 @@ public class Voyage {
         this.chauffeur = chauffeur;
         this.status = Status.EN_PREPARATION;
         this.listeReservation = new ArrayList<>();
+        this.admin = admin;
+        admin.getAgence().getVoyages().add(this);
+
 
         String sql = "INSERT INTO voyage(id, centre_depart_id, centre_arrivee_id, distance, date_depart, classe, prix_billet, taxibrousse_id, chauffeur_id, status) VALUES (?, ?, ?, ?, ?, ?,?,?,?,?)";
 
